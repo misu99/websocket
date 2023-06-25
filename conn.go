@@ -808,6 +808,7 @@ func (c *Conn) advanceFrame() (int, error) {
 
 	p, err := c.read(2)
 	if err != nil {
+		c.handleClose(CloseNoStatusReceived, err.Error())
 		return noFrame, err
 	}
 
